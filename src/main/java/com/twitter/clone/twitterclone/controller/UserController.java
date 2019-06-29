@@ -23,10 +23,6 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) {
 
-        if(result) {
-            System.out.println(result);
-        }
-
         User newUser = userService.saveUser(user);
 
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);

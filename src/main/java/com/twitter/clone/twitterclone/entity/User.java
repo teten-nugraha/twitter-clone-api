@@ -74,4 +74,14 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @PrePersist
+    protected void onCreate() {
+        this.create_At = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.update_At = new Date();
+    }
 }
