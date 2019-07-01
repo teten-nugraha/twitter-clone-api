@@ -10,6 +10,8 @@ import com.twitter.clone.twitterclone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReplyService {
 
@@ -26,12 +28,19 @@ public class ReplyService {
 
         User maker = userRepository.findByUsername(makerName).orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
 
-        Tweet tweet = tweetRepository.findById(tweet_id).orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
+        Tweet tweet = tweetRepository.findById(tweet_id).orElseThrow(() -> new ResourceNotFoundException("Tweet Not Found"));
 
         reply.setUser(maker);
         reply.setTweet(tweet);
 
         return replyRepository.save(reply);
+    }
+
+    public List<Reply> getRepliesByTweetId(Long tweetId) {
+        Tweet tweet = tweetRepository.findById(tweetId).orElseThrow(() -> new ResourceNotFoundException("Tweet Not Found"));
+
+        return replyRepository.findByTweetIdOrderByIdDesc(tweetId);
+
     }
 
 }

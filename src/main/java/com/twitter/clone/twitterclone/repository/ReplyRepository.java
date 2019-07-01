@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
 
-    List<Reply> findAllByTweetId(Long tweetId);
+
+    List<Reply> findByTweetIdOrderByIdDesc(Long tweetId);
 
 }

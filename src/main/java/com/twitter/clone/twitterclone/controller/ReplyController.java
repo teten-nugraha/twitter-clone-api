@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/replies")
@@ -44,6 +45,17 @@ public class ReplyController {
                 newReply,
                 Status.SUCCESS,
                 "Reply Anda berhasil di posting"
+        );
+
+    }
+
+    @GetMapping("/{tweet_id}")
+    public ResponseEntity<?> getRepliesByTweetid(@PathVariable("tweet_id") Long id) {
+
+        return RESTApiResponse.responseSuccess(
+                replyService.getRepliesByTweetId(id),
+                Status.SUCCESS,
+                ""
         );
 
     }
