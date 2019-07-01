@@ -18,6 +18,7 @@ public class Reply {
     @ManyToOne(
             fetch = FetchType.LAZY
     )
+    @JsonIgnore
     private Tweet tweet;
 
     @ManyToOne(

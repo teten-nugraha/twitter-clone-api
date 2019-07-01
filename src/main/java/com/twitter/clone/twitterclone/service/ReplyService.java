@@ -1,9 +1,11 @@
 package com.twitter.clone.twitterclone.service;
 
 import com.twitter.clone.twitterclone.entity.Reply;
+import com.twitter.clone.twitterclone.entity.Tweet;
 import com.twitter.clone.twitterclone.entity.User;
 import com.twitter.clone.twitterclone.exception.ResourceNotFoundException;
 import com.twitter.clone.twitterclone.repository.ReplyRepository;
+import com.twitter.clone.twitterclone.repository.TweetRepository;
 import com.twitter.clone.twitterclone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,18 @@ public class ReplyService {
     @Autowired
     private UserRepository userRepository;
 
-    public Reply saveOrUpdate(Reply reply, String makerName) {
+    @Autowired
+    private TweetRepository tweetRepository;
+
+    public Reply saveOrUpdate(Reply reply,Long tweet_id, String makerName) {
 
         User maker = userRepository.findByUsername(makerName).orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
 
+        Tweet tweet = tweetRepository.findById(tweet_id).orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
+
         reply.setUser(maker);
+        reply.setTweet(tweet);
+
         return replyRepository.save(reply);
     }
 
