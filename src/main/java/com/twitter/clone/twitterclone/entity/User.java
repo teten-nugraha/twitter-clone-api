@@ -30,7 +30,7 @@ public class User implements UserDetails {
     @NotBlank(message = "fullname is required")
     private String fullname;
 
-    @NotBlank(message = "passwrod is required")
+    @NotBlank(message = "password is required")
     private String password;
 
     @OneToMany(

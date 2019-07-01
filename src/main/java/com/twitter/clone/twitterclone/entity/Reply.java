@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -22,7 +23,10 @@ public class Reply {
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-    private User reply;
+    private User user;
+
+    @NotBlank(message = "Reply is required")
+    private String reply;
 
     @JsonIgnore
     private Date create_At;
