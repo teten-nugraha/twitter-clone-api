@@ -73,6 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(SecurityConstant.SIGN_UP_URLS).permitAll()
                 .antMatchers(SecurityConstant.H2_URL).permitAll()
+                .antMatchers("/test**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(
