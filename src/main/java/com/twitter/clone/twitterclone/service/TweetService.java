@@ -17,9 +17,9 @@ public class TweetService {
     @Autowired
     private TweetRepository tweetRepository;
 
-    public Tweet saveOrUpdateTweet(Tweet tweet, Long makerId) {
+    public Tweet saveOrUpdateTweet(Tweet tweet, String makerName) {
 
-        User maker = userRepository.getById(makerId).orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
+        User maker = userRepository.findByUsername(makerName).orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
 
         tweet.setUser(maker);
         return tweetRepository.save(tweet);
