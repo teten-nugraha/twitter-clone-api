@@ -1,5 +1,6 @@
 package com.twitter.clone.twitterclone.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -13,9 +14,6 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
-@Data
-@ToString
-@NoArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -30,7 +28,7 @@ public class User implements UserDetails {
     @NotBlank(message = "fullname is required")
     private String fullname;
 
-    @NotBlank(message = "password is required")
+    @NotBlank(message = "passwrod is required")
     private String password;
 
     @Transient
@@ -38,45 +36,102 @@ public class User implements UserDetails {
     private Date create_At;
     private Date update_At;
 
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public User() {
     }
 
-    @Override
-    public String getPassword() {
-        return null;
+    public Long getId() {
+        return id;
     }
 
-    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
-        return null;
+        return username;
     }
 
+    /**
+     * User details interface mwthod
+     * @return
+     */
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
 
+    @Override
+    @JsonIgnore
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public Date getCreate_At() {
+        return create_At;
+    }
+
+    public void setCreate_At(Date create_At) {
+        this.create_At = create_At;
+    }
+
+    public Date getUpdate_At() {
+        return update_At;
+    }
+
+    public void setUpdate_At(Date update_At) {
+        this.update_At = update_At;
+    }
+
     @PrePersist
-    protected void onCreate() {
+    protected void onCreate(){
         this.create_At = new Date();
     }
 
