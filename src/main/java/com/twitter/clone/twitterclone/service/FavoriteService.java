@@ -32,4 +32,12 @@ public class FavoriteService {
 
     }
 
+    public void unsetFavorite(Long favId) {
+
+        Favorite favorite = favoriteRepository.findById(favId).orElseThrow(()->new  ResourceNotFoundException("Favorite Not Found"))
+
+        favoriteRepository.delete(favorite);
+
+    }
+
 }
