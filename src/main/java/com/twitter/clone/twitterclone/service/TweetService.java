@@ -39,5 +39,11 @@ public class TweetService {
 
     }
 
+    public Page<Tweet> getHome(Pageable pageable) {
+
+        return tweetRepository.findAll(pageable);
+
+    }
+
 
 }
