@@ -78,7 +78,12 @@ public class UserController {
 
         User newUser = userService.saveUser(user);
 
-        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+        return RESTApiResponse.responseSuccess(
+                newUser,
+                Status.SUCCESS,
+                ""
+        );
+
     }
 
 
