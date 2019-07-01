@@ -23,6 +23,7 @@ public class Reply {
     @ManyToOne(
             fetch = FetchType.LAZY
     )
+    @JsonIgnore
     private User user;
 
     @NotBlank(message = "Reply is required")
