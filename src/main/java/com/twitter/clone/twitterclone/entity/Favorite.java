@@ -1,7 +1,9 @@
 package com.twitter.clone.twitterclone.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -31,6 +33,11 @@ public class Favorite {
 
     @JsonIgnore
     private Date update_At;
+
+    public Favorite(Tweet tweet, User user) {
+        this.tweet = tweet;
+        this.user = user;
+    }
 
     @PrePersist
     protected void onCreate(){
