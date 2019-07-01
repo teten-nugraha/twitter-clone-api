@@ -74,7 +74,16 @@ public class UserController {
         userValidator.validate(user, result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null) return errorMap;
+        if(errorMap != null){
+
+            return RESTApiResponse.responseError(
+                errorMap.getBody(),
+                Status.ERROR,
+                errorMap.getStatusCode().toString(),
+                errorMap.getStatusCodeValue()
+            );
+
+        }
 
         User newUser = userService.saveUser(user);
 
