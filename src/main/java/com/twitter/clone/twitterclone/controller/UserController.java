@@ -4,9 +4,11 @@ import com.twitter.clone.twitterclone.entity.User;
 import com.twitter.clone.twitterclone.exception.MapValidationErrorService;
 import com.twitter.clone.twitterclone.payload.JWTLoginSuccessResponse;
 import com.twitter.clone.twitterclone.payload.LoginRequest;
+import com.twitter.clone.twitterclone.response.RESTApiResponse;
 import com.twitter.clone.twitterclone.security.JwtTokenProvider;
 import com.twitter.clone.twitterclone.security.SecurityConstant;
 import com.twitter.clone.twitterclone.service.UserService;
+import com.twitter.clone.twitterclone.util.Status;
 import com.twitter.clone.twitterclone.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,7 +60,12 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt  = SecurityConstant.TOKEN_PREFIX+tokenProvider.genereteToken(authentication);
 
-        return ResponseEntity.ok(new JWTLoginSuccessResponse(true, jwt));
+        return RESTApiResponse.responseSuccess(
+                jwt,
+                Status.SUCCESS,
+                ""
+        );
+
     }
 
     @PostMapping("/register")
