@@ -33,5 +33,18 @@ public class FavoriteController {
 
     }
 
+    @PostMapping("/unset/{fav_id}")
+    public ResponseEntity<?> unsetFavorite(@PathVariable("fav_id") Long favId) {
+
+        favoriteService.unsetFavorite(favId);
+
+        return RESTApiResponse.responseSuccess(
+                null,
+                Status.SUCCESS,
+                "Data favorite berhasil dihapus"
+        );
+
+    }
+
 
 }

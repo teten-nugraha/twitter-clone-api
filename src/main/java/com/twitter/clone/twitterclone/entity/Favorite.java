@@ -34,6 +34,9 @@ public class Favorite {
     @JsonIgnore
     private Date update_At;
 
+    public Favorite() {
+    }
+
     public Favorite(Tweet tweet, User user) {
         this.tweet = tweet;
         this.user = user;
