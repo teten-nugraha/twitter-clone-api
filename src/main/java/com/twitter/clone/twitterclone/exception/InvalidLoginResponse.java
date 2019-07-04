@@ -5,13 +5,11 @@ import lombok.Data;
 @Data
 public class InvalidLoginResponse {
 
-    private String username;
-    private String password;
+    private String error;
 
     public InvalidLoginResponse() {
 
-        this.username = "Invalid username";
-        this.password = "Invalid password";
+        this.error = "Authentication Error";
 
     }
 }
