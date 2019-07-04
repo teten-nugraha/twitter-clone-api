@@ -67,7 +67,7 @@ public class UserController {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt  = SecurityConstant.TOKEN_PREFIX+tokenProvider.genereteToken(authentication);
+        String jwt  = tokenProvider.genereteToken(authentication);
 
         return RESTApiResponse.responseSuccess(
                 jwt,
