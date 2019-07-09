@@ -14,4 +14,5 @@ public interface TweetRepository extends JpaRepository<Tweet, Long> {
     Page<Tweet> findAllByUserId(Long id,Pageable pageable);
     Page<Tweet> findAll(Pageable pageable);
 
+
 }

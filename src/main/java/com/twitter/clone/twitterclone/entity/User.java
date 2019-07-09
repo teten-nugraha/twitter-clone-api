@@ -35,10 +35,11 @@ public class User implements UserDetails {
 
     @OneToMany(
             cascade = CascadeType.REFRESH,
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             mappedBy = "user",
             orphanRemoval = true
     )
+    @JsonIgnore
     private List<Tweet> tweets = new ArrayList<>();
 
     @Transient

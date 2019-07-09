@@ -2,6 +2,8 @@ package com.twitter.clone.twitterclone.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,10 +20,10 @@ public class Tweet {
     @NotBlank(message = "Tweet is required")
     private String tweet;
 
+    @Fetch(FetchMode.JOIN)
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-    @JsonIgnore
     private User user;
 
     @JsonIgnore
