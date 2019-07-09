@@ -67,7 +67,7 @@ public class TweetController {
     @GetMapping("/home")
     public ResponseEntity<?> getHomes(Pageable pageable) {
 
-        Page tweets  = tweetService.getHome(pageable);
+        List<Tweet> tweets  = tweetService.getHome(pageable);
 
         return RESTApiResponse.responseSuccess(
                 tweets,

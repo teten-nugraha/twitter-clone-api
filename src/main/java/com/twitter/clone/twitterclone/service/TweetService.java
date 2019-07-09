@@ -8,6 +8,7 @@ import com.twitter.clone.twitterclone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,9 +40,9 @@ public class TweetService {
 
     }
 
-    public Page<Tweet> getHome(Pageable pageable) {
+    public List<Tweet> getHome(Pageable pageable) {
 
-        return tweetRepository.findAll(pageable);
+        return tweetRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 
     }
 
